@@ -1,0 +1,21 @@
+------------------------------------
+-- Measure: [Most Expensive Product]
+------------------------------------
+MEASURE 'Products'[Most Expensive Product] =
+    VAR _MaxPrice = MAXX( ALL( 'Products' ), 'Products'[UnitPrice] )
+    VAR _Product =
+        CALCULATE(
+            VALUES( 'Products'[ProductName] ),
+            'Products'[UnitPrice] = _MaxPrice
+        )
+    VAR _ProductID =
+        CALCULATE(
+            VALUES( 'Products'[ProductID] ),
+            'Products'[UnitPrice] = _MaxPrice
+        )
+    VAR Result =
+        FORMAT( _ProductID, "0" ) & " - " & _Product & " @ "
+            & FORMAT( _MaxPrice, "Currency" )
+    RETURN
+        Result
+    DisplayFolder = "My Answers"

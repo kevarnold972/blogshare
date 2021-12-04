@@ -1,0 +1,6 @@
+--------------------------------
+-- Measure: [Average Unit Price]
+--------------------------------
+MEASURE 'Products'[Average Unit Price] = AVERAGE( 'Products'[UnitPrice] )
+    DisplayFolder = "My Answers"
+    FormatString = "$ #,##0.00"

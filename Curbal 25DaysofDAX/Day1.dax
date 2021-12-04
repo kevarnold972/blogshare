@@ -1,0 +1,11 @@
+---------------------------------------------
+-- Measure: [Count Current Products under 20]
+---------------------------------------------
+MEASURE 'Products'[Count Current Products under 20] =
+    CALCULATE(
+        COUNTROWS( 'Products' ),
+        'Products'[Discontinued] = FALSE( ),
+        'Products'[UnitPrice] < 20
+    )
+    DisplayFolder = "My Answers"
+    FormatString = "0"
