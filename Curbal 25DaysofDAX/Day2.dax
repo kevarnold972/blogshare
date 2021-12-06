@@ -1,7 +1,7 @@
 ------------------------------------
 -- Measure: [Most Expensive Product]
 ------------------------------------
-MEASURE 'Products'[Most Expensive Product] =
+MEASURE 'Products'[Most Expensive Product] = 
     VAR _MaxPrice = MAXX( ALL( 'Products' ), 'Products'[UnitPrice] )
     VAR _Product =
         CALCULATE(
@@ -18,4 +18,5 @@ MEASURE 'Products'[Most Expensive Product] =
             & FORMAT( _MaxPrice, "Currency" )
     RETURN
         Result
+    Description = "Day 2"
     DisplayFolder = "My Answers"

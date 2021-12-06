@@ -1,0 +1,11 @@
+------------------------------------------
+-- Measure: [Products between $15 and $25]
+------------------------------------------
+MEASURE 'Products'[Products between $15 and $25] = 
+    CALCULATE(
+        COUNTROWS( 'Products' ),
+        'Products'[UnitPrice] >= 15 && 'Products'[UnitPrice] <= 25
+    )
+    Description = "Day 5"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"

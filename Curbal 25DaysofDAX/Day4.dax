@@ -1,0 +1,14 @@
+-------------------------------------------
+-- Measure: [Count Products above Unit Avg]
+-------------------------------------------
+MEASURE 'Products'[Count Products above Unit Avg] = 
+    VAR AvgUnitPrice = [Average Unit Price]
+    VAR ProductsGreater =
+        SELECTCOLUMNS(
+            FILTER( 'Products', 'Products'[UnitPrice] > AvgUnitPrice ),
+            "@ProductID", 'Products'[ProductID]
+        )
+    RETURN
+        COUNTROWS( ProductsGreater )
+    Description = "Day 4"
+    DisplayFolder = "My Answers"
