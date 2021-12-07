@@ -1,0 +1,16 @@
+------------------------------------
+-- Measure: [Average Order Quantity]
+------------------------------------
+MEASURE 'Orders'[Average Order Quantity] = 
+    VAR OrderTotalQty =
+        SUMMARIZE(
+            'Orders',
+            'Orders'[OrderID],
+            "@TotalQty", SUM( 'Orders'[Quantity] )
+        )
+    VAR Result = AVERAGEX( OrderTotalQty, [@TotalQty] )
+    RETURN
+        Result
+    Description = "Day 6"
+    DisplayFolder = "My Answers"
+    FormatString = "0.00"
