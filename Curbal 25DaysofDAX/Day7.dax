@@ -1,0 +1,11 @@
+-------------------------------
+-- Measure: [Open Orders Value]
+-------------------------------
+MEASURE 'Orders'[Open Orders Value] = 
+    CALCULATE(
+        [Total sales],
+        'Orders'[ShippedDate] = BLANK( )
+    )
+    Description = "Day 7"
+    DisplayFolder = "My Answers"
+    FormatString = "$ #,##0.00"
