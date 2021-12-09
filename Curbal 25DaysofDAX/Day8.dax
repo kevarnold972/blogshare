@@ -1,0 +1,16 @@
+----------------------------------------
+-- Measure: [Single Product Order Count]
+----------------------------------------
+MEASURE 'Orders'[Single Product Order Count] = 
+    VAR OrderProduct =
+        SUMMARIZE(
+            'Orders',
+            'Orders'[OrderID],
+            "@ProductCount", DISTINCTCOUNT( 'Orders'[ProductID] )
+        )
+    VAR Result = COUNTROWS( FILTER( OrderProduct, [@ProductCount] = 1 ) )
+    RETURN
+        Result
+    Description = "Day 8"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
