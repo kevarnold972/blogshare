@@ -1,0 +1,17 @@
+------------------------------------------------
+-- Measure: [Average Sales for Romero y tomillo]
+------------------------------------------------
+MEASURE 'Orders'[Average Sales for Romero y tomillo] = 
+    VAR CustomerSales =
+        SUMMARIZE(
+            FILTER(
+                'Orders',
+                RELATED( 'Customers'[CompanyName] ) = "Romero y tomillo"
+            ),
+            'Orders'[OrderID],
+            "@Sales", [Total sales]
+        )
+    RETURN
+        AVERAGEX( CustomerSales, [@Sales] )
+    DisplayFolder = "My Answers"
+    FormatString = "$ #,##0.00"
