@@ -1,0 +1,14 @@
+-------------------------------------------------
+-- Measure: [Days since North/South last ordered]
+-------------------------------------------------
+MEASURE 'Orders'[Days since North/South last ordered] = 
+    VAR MaxDate =
+        CALCULATE(
+            MAX( 'Orders'[OrderDate] ),
+            'Customers'[CompanyName] = "North/South"
+        )
+    VAR Result = INT( NOW( ) - MaxDate )
+    RETURN
+        Result
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
