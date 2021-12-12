@@ -1,0 +1,16 @@
+----------------------------------------------
+-- Measure: [Number of Single order Customers]
+----------------------------------------------
+MEASURE 'Orders'[Number of Single order Customers] = 
+    VAR CustomerOrderCount =
+        SUMMARIZE(
+            'Orders',
+            'Orders'[CustomerID],
+            "@OrderCount", COUNTROWS( VALUES( 'Orders'[OrderID] ) )
+        )
+    VAR Result = COUNTROWS( FILTER( CustomerOrderCount, [@OrderCount] = 1 ) )
+    RETURN
+        Result
+    Description = "Day 11"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
