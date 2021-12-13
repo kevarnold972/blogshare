@@ -1,0 +1,23 @@
+-------------------------------------------
+-- Measure: [New Customers in Current Year]
+-------------------------------------------
+MEASURE 'Orders'[New Customers in Current Year] = 
+    VAR CurrentYear = [Current year]
+    VAR CustomerMinOrderDate =
+        SUMMARIZE(
+            'Orders',
+            'Orders'[CustomerID],
+            "@FirstOrderDate", MIN( 'Orders'[OrderDate] )
+        )
+    VAR CustomerFirstOrderYear =
+        ADDCOLUMNS(
+            CustomerMinOrderDate,
+            "@Year", YEAR( [@FirstOrderDate] )
+        )
+    RETURN
+        COUNTROWS(
+            FILTER( CustomerFirstOrderYear, [@Year] = CurrentYear )
+        )
+    Description = "Day 12 - How many New customers (first purchase in current year) in 2021"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
