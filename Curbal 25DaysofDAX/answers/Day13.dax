@@ -1,0 +1,21 @@
+--------------------------------------
+-- Measure: [Number of Lost Customers]
+--------------------------------------
+MEASURE 'Orders'[Number of Lost Customers] = 
+    VAR CurrentYear = [Current year]
+    VAR CustomersPriorYears =
+        CALCULATETABLE(
+            VALUES( 'Orders'[CustomerID] ),
+            'Calendar'[Year] <> CurrentYear
+        )
+    VAR CustomersCurrentYear =
+        CALCULATETABLE(
+            VALUES( 'Orders'[CustomerID] ),
+            'Calendar'[Year] = CurrentYear
+        )
+    VAR LostCustomers = EXCEPT( CustomersPriorYears, CustomersCurrentYear )
+    RETURN
+        COUNTROWS( LostCustomers )
+    Description = "Day 13 - How mant Lost customers (no purchases in current year) in 2021"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
