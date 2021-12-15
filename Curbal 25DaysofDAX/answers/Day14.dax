@@ -1,0 +1,17 @@
+-----------------------------------------------------------
+-- Measure: [Number of Customers not buying Queso Cabrales]
+-----------------------------------------------------------
+MEASURE 'Orders'[Number of Customers not buying Queso Cabrales] = 
+    VAR CustomersWithQueso =
+        CALCULATETABLE(
+            VALUES( 'Orders'[CustomerID] ),
+            'Products'[ProductName] = "Queso Cabrales"
+        )
+    VAR AllCustomers = ALL( 'Orders'[CustomerID] )
+    VAR CustomersNotBuyingQ = EXCEPT( AllCustomers, CustomersWithQueso )
+    VAR Result = COUNTROWS( CustomersNotBuyingQ )
+    RETURN
+        Result
+    Description = "Day 14 - How many customers have NEVER purchased Queso Cabrales"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
