@@ -1,0 +1,36 @@
+----------------------------------------------------------------
+-- Measure: [Number of Customer Orders with only Queso Cabrales]
+----------------------------------------------------------------
+MEASURE 'Orders'[Number of Customer Orders with only Queso Cabrales] = 
+    //Get the list of customers by order with only 1 product
+    VAR CustomerOrderProducts =
+        SUMMARIZE(
+            'Orders',
+            'Orders'[CustomerID],
+            'Orders'[OrderID],
+            "@ProductCount", DISTINCTCOUNT( 'Orders'[ProductID] )
+        )
+    VAR CustomersOneProduct = FILTER( CustomerOrderProducts, [@ProductCount] = 1 )
+    //Get the list of customers by Order that purchased "Queso Cabrales"
+    VAR CustomerOrderQuesoProduct =
+        SUMMARIZE(
+            'Orders',
+            'Orders'[CustomerID],
+            'Orders'[OrderID],
+            "@ProductCount",
+                COUNTROWS(
+                    CALCULATETABLE(
+                        VALUES( 'Orders'[ProductID] ),
+                        'Products'[ProductName] = "Queso Cabrales"
+                    )
+                )
+        )
+    VAR CustomersWithQueso = FILTER( CustomerOrderQuesoProduct, [@ProductCount] = 1 )
+    //Joining the lists will provide the result
+    VAR CustomerOrdersJustQueso = NATURALINNERJOIN( CustomersWithQueso, CustomersOneProduct )
+    VAR Result = COUNTROWS( CustomerOrdersJustQueso )
+    RETURN
+        Result
+    Description = "Day 15 - How many customers have purchased only Queso Cabrales (on an order)"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
