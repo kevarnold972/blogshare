@@ -1,0 +1,10 @@
+---------------------------------------------
+-- Measure: [Number of Products out of stock]
+---------------------------------------------
+MEASURE 'Products'[Number of Products out of stock] = 
+    COUNTROWS(
+                CALCULATETABLE( 'Products', 'Products'[UnitsInStock] = 0 )
+            )
+    Description = "Day 16 - How many products are out of stock?"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
