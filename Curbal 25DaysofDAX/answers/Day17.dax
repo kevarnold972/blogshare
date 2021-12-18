@@ -1,0 +1,14 @@
+--------------------------------------------------------
+-- Measure: [Number of Products needing to be restocked]
+--------------------------------------------------------
+MEASURE 'Products'[Number of Products needing to be restocked] = 
+    COUNTROWS(
+        FILTER(
+            'Products',
+            'Products'[UnitsInStock] <= [Restock level]
+                && 'Products'[Discontinued] = FALSE
+        )
+    )
+    Description = "Day 17 - How many products need to be restocked? (based on restock levels)"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
