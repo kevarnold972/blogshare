@@ -1,0 +1,14 @@
+--------------------------------------------------------
+-- Measure: [Number of Products on Order need restocked]
+--------------------------------------------------------
+MEASURE 'Products'[Number of Products on Order need restocked] = 
+    CALCULATE(
+        COUNTROWS( 'Products' ),
+        FILTER(
+            'Products',
+            'Products'[UnitsOnOrder] > 'Products'[UnitsInStock]
+        )
+    )
+    Description = "Day 18 - How many products on order we need to restock"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
