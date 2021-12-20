@@ -1,0 +1,15 @@
+-------------------------------------------------
+-- Measure: [Discontinued Products Stocked Value]
+-------------------------------------------------
+MEASURE 'Products'[Discontinued Products Stocked Value] = 
+    CALCULATE(
+        SUMX(
+            'Products',
+            [Unit Price]
+                * ( 'Products'[UnitsInStock] - 'Products'[UnitsOnOrder] )
+        ),
+        'Products'[Discontinued] = TRUE
+    )
+    Description = "Day 19 - What is the stocked value of the discontinued products?"
+    DisplayFolder = "My Answers"
+    FormatString = "$ #,##0.00"
