@@ -1,0 +1,21 @@
+------------------------------------------------
+-- Measure: [Vendor with Highest Stock $ Amount]
+------------------------------------------------
+MEASURE 'Products'[Vendor with Highest Stock $ Amount] = 
+    VAR VendorStockValue =
+        SUMMARIZECOLUMNS(
+            'Suppliers'[CompanyName],
+            "@StockValue",
+                SUMX(
+                    'Products',
+                    'Products'[UnitsInStock] * 'Products'[UnitPrice]
+                )
+        )
+    VAR TopVendor =
+        TOPN( 1, VendorStockValue, [@StockValue], DESC )
+    VAR Result =
+        SELECTCOLUMNS( TopVendor, 'Suppliers'[CompanyName] )
+    RETURN
+        Result
+    Description = "Day 20 - Which vendor has the highest stock value?"
+    DisplayFolder = "My Answers"
