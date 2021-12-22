@@ -1,0 +1,14 @@
+--------------------------------
+-- Measure: [% Female Employees]
+--------------------------------
+MEASURE 'Employees'[% Female Employees] = 
+    DIVIDE(
+        CALCULATE(
+            COUNTROWS( 'Employees' ),
+            'Employees'[Gender] = "Female"
+        ),
+        COUNTROWS( 'Employees' )
+    )
+    Description = "Day 21 - How many employees (%) are female"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0.00 %"
