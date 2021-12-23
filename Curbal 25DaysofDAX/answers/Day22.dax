@@ -1,0 +1,14 @@
+-------------------------------------------------
+-- Measure: [Number of Employees age 60 and over]
+-------------------------------------------------
+MEASURE 'Employees'[Number of Employees age 60 and over] = 
+    VAR EmployeeAge =
+        ADDCOLUMNS(
+            'Employees',
+            "@Age", DATEDIFF( 'Employees'[BirthDate], TODAY( ), YEAR )
+        )
+    RETURN
+        COUNTROWS( FILTER( EmployeeAge, [@Age] >= 60 ) )
+    Description = "Day 22 - How many employees are 60 years old or over?"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
