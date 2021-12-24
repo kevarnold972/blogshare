@@ -1,0 +1,19 @@
+----------------------------------
+-- Measure: [Top Salesperson 2021]
+----------------------------------
+MEASURE 'Employees'[Top Salesperson 2021] = 
+    VAR Employee2021Sales =
+        ADDCOLUMNS(
+            'Employees',
+            "@2021Sales",
+                CALCULATE( [Total sales], 'Calendar'[Year] = 2021 )
+        )
+    VAR TopSalesPeople =
+        SELECTCOLUMNS(
+            TOPN( 1, Employee2021Sales,[@2021Sales],DESC ),
+            "@Name", 'Employees'[Full Name]
+        )
+    RETURN
+        CONCATENATEX( TopSalesPeople, [@Name], " & " )
+    Description = "Day 23 - Which employee had the highest sales in 2021?"
+    DisplayFolder = "My Answers"
