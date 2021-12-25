@@ -1,0 +1,20 @@
+-------------------------------------------------------------
+-- Measure: [Number of Sales people over $100K sales in 2021]
+-------------------------------------------------------------
+MEASURE 'Employees'[Number of Sales people over $100K sales in 2021] = 
+    VAR Employee2021Sales =
+        ADDCOLUMNS(
+            'Employees',
+            "@2021Sales",
+                CALCULATE( [Total sales], 'Calendar'[Year] = 2021 )
+        )
+    VAR SalesPeopleOver100K =
+        SELECTCOLUMNS(
+            FILTER( Employee2021Sales, [@2021Sales] > 100000 ),
+            "@Name", 'Employees'[Full Name]
+        )
+    RETURN
+        COUNTROWS( SalesPeopleOver100K )
+    Description = "Day 24 - How many employees sold over $100K in 2021?"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
