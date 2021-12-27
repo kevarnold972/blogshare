@@ -1,0 +1,10 @@
+-------------------------------------
+-- Measure: [Employees hired in 1994]
+-------------------------------------
+MEASURE 'Employees'[Employees hired in 1994] = 
+    COUNTROWS(
+        FILTER( 'Employees', YEAR( 'Employees'[HireDate] ) = 1994 )
+    )
+    Description = "Day 25 - How many employess got hired in 1994?"
+    DisplayFolder = "My Answers"
+    FormatString = "#,##0"
