@@ -1,0 +1,20 @@
+-- Day 3 - Longest gap in years between tournaments
+
+DEFINE
+    VAR _YearsApart =
+        SUMMARIZECOLUMNS(
+            'tournaments'[key_id],
+            "@Years", [Years Apart]
+        )
+    MEASURE 'tournaments'[Years Apart] =
+        VAR _CurrentYear = MIN( 'tournaments'[year] )
+        VAR _PrevYear =
+            CALCULATE(
+                MIN( 'tournaments'[year] ),
+                OFFSET ( - 1 , ALLSELECTED ( 'tournaments'[key_id] ) , orderby ( 'tournaments'[key_id] , ASC ) )
+            )
+        RETURN
+            IF( NOT ( ISBLANK( _PrevYear ) ), _CurrentYear - _PrevYear )
+
+EVALUATE
+{ MAXX( _YearsApart, [@Years] ) }

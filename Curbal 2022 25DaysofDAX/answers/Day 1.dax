@@ -1,0 +1,18 @@
+// Day 1 Country/s with most tournaments won
+
+DEFINE
+    VAR _TeamWinCount =
+        SUMMARIZECOLUMNS(
+            'team_appearances'[team_name],
+            "@Win Count", [Team Win Count]
+        )
+    MEASURE 'team_appearances'[Team Win Count] =
+        COUNTROWS(
+            CALCULATETABLE(
+                VALUES( 'team_appearances'[key_id] ),
+                'team_appearances'[result] = "win"
+            )
+        )
+
+EVALUATE
+TOPN( 1, _TeamWinCount, [@Win Count], DESC )

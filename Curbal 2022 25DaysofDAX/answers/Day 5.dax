@@ -1,0 +1,27 @@
+//Day 5 - County/s with most second place finnishes
+
+DEFINE
+    VAR _2ndPlaceTeamCounts =
+        ADDCOLUMNS(
+            SUMMARIZE(
+                'tournament_standings',
+                'tournament_standings'[team_name]
+            ),
+            "@StandingCount", [StandingCount]
+        )
+    VAR _MaxCount = MAXX( _2ndPlaceTeamCounts, [@StandingCount] )
+    MEASURE 'tournament_standings'[StandingCount] =
+        CALCULATE(
+            COUNTROWS( 'tournament_standings' ),
+            'tournament_standings'[position] = 2
+        )
+
+EVALUATE
+{
+    CONCATENATEX(
+        FILTER( _2ndPlaceTeamCounts, [@StandingCount] = _MaxCount ),
+        'tournament_standings'[team_name],
+        ", ",
+        'tournament_standings'[team_name]
+    )
+}

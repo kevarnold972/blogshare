@@ -1,0 +1,18 @@
+//Day 2 Host country/s that won
+
+DEFINE
+    VAR _HostWinners =
+        CALCULATETABLE(
+            VALUES( 'tournaments'[winner] ),
+            'tournaments'[host_won] = 1
+        )
+
+EVALUATE
+{
+    CONCATENATEX(
+        _HostWinners,
+        'tournaments'[winner],
+        ", ",
+        'tournaments'[winner]
+    )
+}

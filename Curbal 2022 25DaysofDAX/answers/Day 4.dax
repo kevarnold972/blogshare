@@ -1,0 +1,23 @@
+//Day 4 - Country(s) with the highest number of hosted tournaments
+DEFINE
+    VAR _CountryCount =
+        SUMMARIZECOLUMNS(
+            'tournaments'[host_country],
+            "@Count", [Row Count]
+        )
+    VAR _MaxYears = MAXX( _CountryCount, [@Count] )
+    MEASURE 'tournaments'[Row Count] =
+        COUNTROWS( VALUES( 'tournaments'[key_id] ) )
+
+EVALUATE
+{
+    CONCATENATEX(
+        SUMMARIZE(
+            FILTER( _CountryCount, [@Count] = _MaxYears ),
+            'tournaments'[host_country]
+        ),
+        'tournaments'[host_country],
+        " ,",
+        'tournaments'[host_country]
+    )
+}
