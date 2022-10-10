@@ -16,3 +16,9 @@ DEFINE
 
 EVALUATE
 TOPN( 1, _TeamWinCount, [@Win Count], DESC )
+
+EVALUATE
+SUMMARIZE(
+    TOPN( 1, _TeamWinCount, [@Win Count], DESC ),
+    'team_appearances'[team_name]
+)

@@ -17,4 +17,6 @@ DEFINE
             IF( NOT ( ISBLANK( _PrevYear ) ), _CurrentYear - _PrevYear )
 
 EVALUATE
-{ MAXX( _YearsApart, [@Years] ) }
+{
+    FORMAT( MAXX( _YearsApart, [@Years] ), "# Years" )
+}
