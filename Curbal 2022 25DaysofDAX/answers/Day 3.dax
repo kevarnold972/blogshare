@@ -11,10 +11,10 @@ DEFINE
         VAR _PrevYear =
             CALCULATE(
                 MIN( 'tournaments'[year] ),
-                OFFSET ( - 1 , ALLSELECTED ( 'tournaments'[key_id] ) , orderby ( 'tournaments'[key_id] , ASC ) )
+                OFFSET( - 1 , ALLSELECTED( 'tournaments'[key_id] ) , orderby( 'tournaments'[key_id] , ASC ) )
             )
         RETURN
-            IF( NOT ( ISBLANK( _PrevYear ) ), _CurrentYear - _PrevYear )
+            IF( NOT( ISBLANK( _PrevYear ) ), _CurrentYear - _PrevYear )
 
 EVALUATE
 {
