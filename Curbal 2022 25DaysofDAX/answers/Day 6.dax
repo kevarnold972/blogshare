@@ -1,0 +1,35 @@
+//Day 6 - Country/s with most world cup appearances
+// Showing 2 tables to obtain the result, both give the same answer
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'team_appearances'[team_name],
+                "@TeamCount", COUNT( 'team_appearances'[key_id] )
+            ),
+            [@TeamCount]
+        ),
+        'team_appearances'[team_name],
+        ", ",
+        'team_appearances'[team_name]
+    )
+}
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'qualified_teams'[team_name],
+                "@TeamCount", COUNT( 'qualified_teams'[key_id] )
+            ),
+            [@TeamCount]
+        ),
+        'qualified_teams'[team_name],
+        ", ",
+        'qualified_teams'[team_name]
+    )
+}

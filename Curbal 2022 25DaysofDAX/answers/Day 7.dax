@@ -1,0 +1,22 @@
+DEFINE
+    VAR _Topplaces =
+        CALCULATETABLE(
+            'tournament_standings',
+            'tournament_standings'[position] <= 2
+        )
+    VAR _TeamPlaceCount =
+        ADDCOLUMNS(
+            SUMMARIZE( _Topplaces, 'tournament_standings'[team_name] ),
+            "@TeamCount",
+                CALCULATE( COUNT( 'tournament_standings'[team_name] ) )
+        )
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN( 1, _TeamPlaceCount, [@TeamCount] ),
+        'tournament_standings'[team_name],
+        ", ",
+        'tournament_standings'[team_name]
+    )
+}

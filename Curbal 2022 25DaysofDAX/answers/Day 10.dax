@@ -1,0 +1,42 @@
+// Day 10 - Country/s with most finals played but never lost
+DEFINE
+    VAR _StageFilter =
+        TREATAS(
+            { "final", "final round" },
+            'team_appearances'[stage_name]
+        )
+    VAR _AllFinalTeams =
+        CALCULATETABLE(
+            VALUES( 'team_appearances'[team_name] ),
+            _StageFilter
+        )
+    VAR _AllFinalLosingTeams =
+        CALCULATETABLE(
+            VALUES( 'team_appearances'[team_name] ),
+            _StageFilter,
+            'team_appearances'[result] IN { "lose" }
+        )
+    VAR _OnlyWinnersFilter =
+        TREATAS(
+            EXCEPT( _AllFinalTeams, _AllFinalLosingTeams ),
+            'team_appearances'[team_name]
+        )
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'team_appearances'[team_name],
+                _OnlyWinnersFilter,
+                _StageFilter,
+                "@Count", COUNT( 'team_appearances'[team_name] )
+            ),
+            [@Count]
+        ),
+        'team_appearances'[team_name],
+        ", ",
+        'team_appearances'[team_name]
+    )
+}

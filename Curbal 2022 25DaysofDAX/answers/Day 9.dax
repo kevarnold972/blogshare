@@ -1,0 +1,37 @@
+//Day 9 - Country/s with most consecutive championship wins
+
+DEFINE
+    VAR _ConsecutiveWinners =
+        SUMMARIZECOLUMNS(
+            'tournaments'[winner],
+            'tournaments'[year],
+            "@WonPrev", [Won Prev]
+        )
+    MEASURE 'tournaments'[Won Prev] =
+        VAR _WinningYear = SELECTEDVALUE( 'tournaments'[year] )
+        VAR _PrevYear =
+            CALCULATE(
+                MAX( 'tournaments'[year] ),
+                REMOVEFILTERS( ),
+                'tournaments'[year] < _WinningYear
+            )
+        VAR _Winner = SELECTEDVALUE( 'tournaments'[winner] )
+        VAR _CheckTable =
+            CALCULATETABLE(
+                'tournaments',
+                REMOVEFILTERS( ),
+                'tournaments'[winner] = _Winner,
+                'tournaments'[year] = _PrevYear
+            )
+        RETURN
+            COUNTROWS( _CheckTable )
+
+EVALUATE
+{
+    CONCATENATEX(
+        _ConsecutiveWinners,
+        'tournaments'[winner],
+        ", ",
+        'tournaments'[winner]
+    )
+}

@@ -1,0 +1,30 @@
+//
+DEFINE
+    VAR _YearsTable =
+        SUMMARIZECOLUMNS(
+            'tournaments'[winner],
+            'tournaments'[year],
+            "@PrevYear", [Prev Year],
+            "Years",
+                IF(
+                    NOT ( ISBLANK( [Prev Year] ) ),
+                    SELECTEDVALUE( 'tournaments'[year] ) - [Prev Year]
+                )
+        )
+    MEASURE 'tournaments'[Prev Year] =
+        VAR _Winner = SELECTEDVALUE( 'tournaments'[winner] )
+        VAR _ThisYear = SELECTEDVALUE( 'tournaments'[year] )
+        VAR Result =
+            CALCULATE(
+                MAX( 'tournaments'[year] ),
+                REMOVEFILTERS( 'tournaments' ),
+                'tournaments'[winner] = _Winner,
+                'tournaments'[year] < _ThisYear
+            )
+        RETURN
+            Result
+
+EVALUATE
+{
+    FORMAT( MAXX( _YearsTable, [Years] ), "# Years" )
+}
