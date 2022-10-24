@@ -1,0 +1,22 @@
+//Day 12 - Players with the most matches played
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'player_appearances'[player_id],
+                'player_appearances'[given_name],
+                'player_appearances'[family_name],
+                "@Count", COUNT( 'player_appearances'[match_id] )
+            ),
+            [@Count]
+        ),
+        CONCATENATE(
+            CONCATENATE( 'player_appearances'[given_name], " " ),
+            'player_appearances'[family_name]
+        ),
+        ", ",
+        'player_appearances'[given_name]
+    )
+}

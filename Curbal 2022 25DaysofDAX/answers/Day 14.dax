@@ -1,0 +1,54 @@
+//Day 14 - Youngest player/s on a final
+DEFINE
+    VAR _StageFilter =
+        TREATAS( { "Final" }, 'player_appearances'[stage_name] )
+    MEASURE 'player_appearances'[Player Age] =
+        VAR _Player = SELECTEDVALUE( 'player_appearances'[player_id] )
+        VAR _BirthDate =
+            LOOKUPVALUE(
+                'players'[birth_date],
+                'players'[player_id],
+                _Player
+            )
+        VAR _MatchDate =
+            SELECTEDVALUE( 'player_appearances'[match_date] )
+        RETURN
+            //Not used just kept for debugging
+            DATEDIFF( _BirthDate, _MatchDate, DAY )
+    MEASURE 'player_appearances'[Player BDate] =
+        VAR _Player = SELECTEDVALUE( 'player_appearances'[player_id] )
+        VAR _BirthDate =
+            LOOKUPVALUE(
+                'players'[birth_date],
+                'players'[player_id],
+                _Player
+            )
+        VAR _MatchDate =
+            SELECTEDVALUE( 'player_appearances'[match_date] )
+        RETURN
+            _BirthDate
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'player_appearances'[match_id],
+                'player_appearances'[player_id],
+                'player_appearances'[match_date],
+                'player_appearances'[given_name],
+                'player_appearances'[family_name],
+                _StageFilter,  //Only Change from Day 13 to 14
+                "@Player Age", [Player Age]
+            ),
+            [Player Age], ASC
+        ),
+        CONCATENATE(
+            CONCATENATE( 'player_appearances'[given_name], " " ),
+            'player_appearances'[family_name]
+        ),
+        ", ",
+        'player_appearances'[given_name]
+    )
+}

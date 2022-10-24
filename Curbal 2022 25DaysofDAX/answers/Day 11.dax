@@ -1,0 +1,19 @@
+//Day 11 - Players with the most tournaments played
+DEFINE
+    VAR _MaxTourCount = MAX( 'players'[count_tournaments] )
+
+EVALUATE
+{
+    CONCATENATEX(
+        CALCULATETABLE(
+            'players',
+            'players'[count_tournaments] = _MaxTourCount
+        ),
+        CONCATENATE(
+            CONCATENATE( 'players'[given_name], " " ),
+            'players'[family_name]
+        ),
+        ", ",
+        'players'[given_name]
+    )
+}
