@@ -1,0 +1,19 @@
+// Day 18 - Match/s with biggest goal margin
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'matches'[match_id],
+                'matches'[match_name],
+                "@Margin", ABS( MAX( 'matches'[home_team_score_margin] ) )
+            ),
+            [@Margin], DESC
+        ),
+        'matches'[match_name],
+        " ,",
+        'matches'[match_name]
+    )
+}

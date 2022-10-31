@@ -1,0 +1,21 @@
+//Day 17 - Player/s with Most goals scored
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'goals'[player_id],
+                'goals'[given_name],
+                'goals'[family_name],
+                "@GoalCount", COUNT( 'goals'[goal_id] )
+            ),
+            [@GoalCount], DESC
+        ),
+        CONCATENATE(
+            'goals'[given_name],
+            CONCATENATE( " ", 'goals'[family_name] )
+        ),
+        " ,"
+    )
+}

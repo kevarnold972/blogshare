@@ -1,0 +1,22 @@
+//Day 20 - Match/es with the most goals scored for both teams
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'matches'[match_id],
+                'matches'[match_name],
+                "@TotalGoals",
+                    SUMX(
+                        'matches',
+                        'matches'[home_team_score] + 'matches'[away_team_score]
+                    )
+            )
+        ),
+        'matches'[match_name],
+        " ,",
+        'matches'[match_name]
+    )
+}

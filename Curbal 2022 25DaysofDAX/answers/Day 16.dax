@@ -1,0 +1,27 @@
+//Day 16 - Player/s with most tournaments as captain
+DEFINE
+    VAR _CaptianFilter =
+        TREATAS( { 1 }, 'player_appearances'[captain] )
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'player_appearances'[player_id],
+                'player_appearances'[given_name],
+                'player_appearances'[family_name],
+                _CaptianFilter,
+                "@TournamentCount",
+                    COUNTROWS( VALUES( 'player_appearances'[tournament_id] ) )
+            ),
+            [@TournamentCount], DESC
+        ),
+        CONCATENATE(
+            'player_appearances'[given_name],
+            CONCATENATE( " ", 'player_appearances'[family_name] )
+        ),
+        " ,"
+    )
+}
