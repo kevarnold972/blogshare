@@ -1,0 +1,19 @@
+//Day 24 - Tournament with highest number of own goals?
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'goals'[tournament_id],
+                'goals'[tournament_name],
+                "@CountOwnGoal", SUM( 'goals'[own_goal] )
+            ),
+            [@CountOwnGoal], DESC
+        ),
+        'goals'[tournament_name],
+        ", ",
+        'goals'[tournament_name]
+    )
+}

@@ -1,0 +1,32 @@
+//Day 25 - The highest average goals per match ( in a tournament).
+
+DEFINE
+    VAR _MatchGoals =
+        SUMMARIZECOLUMNS(
+            'goals'[tournament_id],
+            'goals'[match_id],
+            "@MatchGoals", COUNTROWS( 'goals' )
+        )
+    VAR _TournamentAvgGoals =
+        ADDCOLUMNS(
+            SUMMARIZE( _MatchGoals, 'goals'[tournament_id] ),
+            "@TourAvg",
+                VAR _TournamentID =
+                    CALCULATE( SELECTEDVALUE( 'goals'[tournament_id] ) )
+                RETURN
+                    AVERAGEX(
+                        FILTER(
+                            _MatchGoals,
+                            'goals'[tournament_id] = _TournamentID
+                        ),
+                        [@MatchGoals]
+                    )
+        )
+
+EVALUATE
+{
+    FORMAT(
+        MAXX( _TournamentAvgGoals, [@TourAvg] ),
+        "#.00 goals"
+    )
+}

@@ -1,0 +1,29 @@
+//Day 22 - Match/es with the biggest goal margin in a final
+
+DEFINE
+    VAR _StageFilter = TREATAS( { "final" }, 'matches'[stage_name] )
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'matches'[match_id],
+                'matches'[match_name],
+                'matches'[away_team_score],
+                'matches'[home_team_score],
+                _StageFilter,
+                "@Diff",
+                    ABS(
+                        MAX( 'matches'[home_team_score] )
+                            - MAX( 'matches'[away_team_score] )
+                    )
+            ),
+            [@Diff], DESC
+        ),
+        'matches'[match_name],
+        ", ",
+        'matches'[match_name]
+    )
+}

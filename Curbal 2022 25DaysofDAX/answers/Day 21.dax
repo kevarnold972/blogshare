@@ -1,0 +1,24 @@
+// Match/es with the highest scoring draw
+
+DEFINE
+    VAR _DrawFilter = TREATAS( { 1 }, 'matches'[draw] )
+
+EVALUATE
+{
+    CONCATENATEX(
+        TOPN(
+            1,
+            SUMMARIZECOLUMNS(
+                'matches'[match_id],
+                'matches'[match_name],
+                'matches'[home_team_score],
+                'matches'[away_team_score],
+                _DrawFilter
+            ),
+            'matches'[away_team_score], DESC
+        ),
+        'matches'[match_name],
+        ", ",
+        'matches'[match_name]
+    )
+}

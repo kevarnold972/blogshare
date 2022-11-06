@@ -1,0 +1,19 @@
+DEFINE
+    VAR _TournamentGoals =
+        SUMMARIZECOLUMNS(
+            'matches'[tournament_id],
+            'matches'[tournament_name],
+            "@TotalGoals",
+                SUMX(
+                    'matches',
+                    'matches'[away_team_score] + 'matches'[home_team_score]
+                )
+        )
+
+EVALUATE
+{
+    CONCATENATE(
+        FORMAT( MAXX( _TournamentGoals, [@TotalGoals] ), "# goals\, " ),
+        FORMAT( MINX( _TournamentGoals, [@TotalGoals] ), "# goals" )
+    )
+}
