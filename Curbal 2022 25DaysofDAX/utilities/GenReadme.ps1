@@ -1,8 +1,8 @@
-$StartLocation = Get-Location
+$StartLocation = "C:\_GitHub\blogshare\Curbal 2022 25DaysofDAX\utilities" #Get-Location
 $FilePath = $StartLocation.Path #+ '\Curbal 2022 25DaysofDAX'
 $FilePath = $FilePath.Replace("\utilities","")
-$ReadMe = $FilePath + '\README.md'
-$Answers = $FilePath + "\answers"
+$ReadMe = $FilePath + 'C:\_GitHub\blogshare\Curbal 2022 25DaysofDAX\README.md'
+$Answers = $FilePath + "C:\_GitHub\blogshare\Curbal 2022 25DaysofDAX\answers"
 
 Write-Output $FilePath
 Write-Output $ReadMe
