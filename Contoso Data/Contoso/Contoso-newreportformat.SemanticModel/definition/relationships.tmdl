@@ -1,0 +1,25 @@
+relationship 8debce3d-680f-45cb-969e-54cf5d777035
+	fromColumn: Sales.CustomerKey
+	toColumn: Customer.CustomerKey
+
+relationship 7e45d44a-803a-48ad-9e78-a27fd676831e
+	fromColumn: Sales.ProductKey
+	toColumn: Product.ProductKey
+
+relationship 2b02c6b8-f720-4e2d-a37a-6d16ab800f33
+	fromColumn: Sales.PromotionKey
+	toColumn: Promotion.PromotionKey
+
+relationship 15fe9869-1abd-4431-b91f-120e0edb5ae7
+	fromColumn: Sales.StoreKey
+	toColumn: Store.StoreKey
+
+relationship ef51289b-55dd-42a5-86db-74f5b14e53ac
+	fromColumn: Sales.'Order Date'
+	toColumn: Date.Date
+
+relationship b19aea1e-86b6-4394-b543-e6e61a7b6226
+	isActive: false
+	fromColumn: Sales.'Delivery Date'
+	toColumn: Date.Date
+

@@ -1,0 +1,96 @@
+table Promotion
+	lineageTag: 0f36b2a7-f2eb-41c5-840a-537e6b8daf78
+
+	/// This measure is the number of rows in table 'Promotion'
+	measure '# Rows in Promotion' = COUNTROWS('Promotion')
+		formatString: 0
+		lineageTag: a97b9bae-3c57-4dfc-8d44-3b4443e7bf99
+
+	column PromotionKey
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: db99eb19-6366-40fc-a608-a870181cbeef
+		summarizeBy: none
+		sourceColumn: PromotionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: d793921f-ad36-4830-986b-ef9c5e2edaf4
+		summarizeBy: none
+		sourceColumn: Promotion Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Promotion
+		dataType: string
+		lineageTag: 1e902824-6103-49f7-a1be-fef951b66656
+		summarizeBy: none
+		sourceColumn: Promotion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount
+		dataType: double
+		lineageTag: 11abded5-28a4-44ef-ac27-cf4bc94a42f3
+		summarizeBy: none
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Promotion Type'
+		dataType: string
+		lineageTag: 2d64c0e3-e4e7-4891-ab4a-6dbc5aff6a21
+		summarizeBy: none
+		sourceColumn: Promotion Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion Category'
+		dataType: string
+		lineageTag: 6f080d55-8ab2-4331-8182-575a932b9f1f
+		summarizeBy: none
+		sourceColumn: Promotion Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ea489d94-7905-458d-b4e9-32200d3c21f1
+		summarizeBy: none
+		sourceColumn: Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0cf9d47e-ad08-4a15-b0f6-9c464a035a66
+		summarizeBy: none
+		sourceColumn: End Date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Promotion-42f4139c-04c9-4cce-a0a1-5f262e1f6ef8 = m
+		mode: import
+		source =
+				let
+				    Source = #"Contoso Folder",
+				    #"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Promotion csv" = Source{[#"Folder Path"="E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\",Name="Promotion.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Promotion csv",[Delimiter="|", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PromotionKey", Int64.Type}, {"Promotion Code", Int64.Type}, {"Promotion", type text}, {"Discount", type number}, {"Promotion Type", type text}, {"Promotion Category", type text}, {"Start Date", type datetime}, {"End Date", type datetime}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

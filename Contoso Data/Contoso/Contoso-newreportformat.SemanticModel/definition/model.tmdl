@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBIDesktopVersion = 2.130.326.0 (24.06)
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Contoso Folder","Customer","Date","Product","Promotion","Sales","Store"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
+
+ref table Customer
+ref table Date
+ref table Product
+ref table Promotion
+ref table Sales
+ref table Store
+
+ref cultureInfo en-US
+

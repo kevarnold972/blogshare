@@ -1,0 +1,186 @@
+table Store
+	lineageTag: 2fcce7fa-2a39-49b2-89d0-52fb0c0204d1
+
+	/// This measure is the number of rows in table 'Store'
+	measure '# Rows in Store' = COUNTROWS('Store')
+		formatString: 0
+		lineageTag: 2dc57b80-6e76-474e-bec4-68ef93dc3ed0
+
+	column StoreKey
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: c55bada9-dd4c-4dea-a2eb-450c88e5933e
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Type'
+		dataType: string
+		lineageTag: e704efc9-4dd8-4d35-aa5a-d832fac928a2
+		summarizeBy: none
+		sourceColumn: Store Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Name'
+		dataType: string
+		lineageTag: 8ce24d77-9803-490c-9fd9-742eb208abfb
+		summarizeBy: none
+		sourceColumn: Store Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: bd95aea8-ed50-4bfa-9e2a-5967cb53c1b2
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Open Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 32f9aabb-cffe-47f3-b02c-a4ed1eba02e7
+		summarizeBy: none
+		sourceColumn: Open Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Close Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: adecb4ca-aa94-480c-8ec0-14b50ac1c240
+		summarizeBy: none
+		sourceColumn: Close Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zip Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: fe3d04c5-e3aa-4b03-894f-9ec338efa91a
+		summarizeBy: none
+		sourceColumn: Zip Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Zip Code Extension'
+		dataType: int64
+		formatString: 0
+		lineageTag: ee858b04-fd7c-4f11-ae54-02e96ce4d733
+		summarizeBy: none
+		sourceColumn: Zip Code Extension
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Phone'
+		dataType: string
+		lineageTag: d5871042-95f5-4e4a-bfba-98a93d019c38
+		summarizeBy: none
+		sourceColumn: Store Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: de49da07-72fc-4fa5-8314-afccf315c067
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: ca8c88c7-bad4-425e-a026-fe827deb0f39
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: ca787fcb-333e-4a12-8765-24409f861ef3
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		lineageTag: c34eed6a-2158-4783-8440-e085e18ef814
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		lineageTag: f7a75c56-1fd2-4fdf-ade2-c3ecec8284f6
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Close Reason'
+		dataType: string
+		lineageTag: 346f8130-1d7f-47d9-884d-0952ff7b2e97
+		summarizeBy: none
+		sourceColumn: Close Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Employees
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f3e032a-88e2-45d8-8fcc-e197182f6beb
+		summarizeBy: none
+		sourceColumn: Employees
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selling Area'
+		dataType: int64
+		formatString: 0
+		lineageTag: ac9bcb93-a327-4dad-a333-7584177e6be8
+		summarizeBy: none
+		sourceColumn: Selling Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Remodel Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ddde7b88-c856-4cf8-a1f1-2d86d9225db5
+		summarizeBy: none
+		sourceColumn: Last Remodel Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegion
+		dataType: string
+		lineageTag: f23e7fed-a445-4202-9670-5ae71bcf56c9
+		summarizeBy: none
+		sourceColumn: CountryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Store-cbc00167-812a-410f-b8ca-c706074e753b = m
+		mode: import
+		source =
+				let
+				    Source = #"Contoso Folder",
+				    #"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Store csv" = Source{[#"Folder Path"="E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\",Name="Store.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Store csv",[Delimiter="|", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"StoreKey", Int64.Type}, {"Store Type", type text}, {"Store Name", type text}, {"Status", type text}, {"Open Date", type datetime}, {"Close Date", type datetime}, {"Zip Code", Int64.Type}, {"Zip Code Extension", Int64.Type}, {"Store Phone", type text}, {"Continent", type text}, {"City", type text}, {"State", type text}, {"Address Line 1", type text}, {"Address Line 2", type text}, {"Close Reason", type text}, {"Employees", Int64.Type}, {"Selling Area", Int64.Type}, {"Last Remodel Date", type datetime}, {"CountryRegion", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

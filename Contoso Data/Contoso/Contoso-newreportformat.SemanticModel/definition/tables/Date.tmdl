@@ -1,0 +1,256 @@
+table Date
+	lineageTag: a2a63a29-f78b-4c48-9d1e-1fa65518296f
+	dataCategory: Time
+
+	/// This measure is the number of rows in table 'Date'
+	measure '# Rows in Date' = COUNTROWS('Date')
+		formatString: 0
+		lineageTag: 014b8961-6818-4086-ab73-b13f2992b0e6
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: mm/dd/yyyy
+		lineageTag: 4c792f1e-97be-48c0-8c57-ee674c6a73c9
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 95d6e0a3-0e67-4efd-93e4-27bcb6c0504e
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 20028113-7cc0-47cb-aeb9-9f45c62fe56b
+		summarizeBy: none
+		sourceColumn: Calendar Year Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year'
+		dataType: string
+		lineageTag: 8408743c-87c2-4950-8133-4f6eabdfc525
+		summarizeBy: none
+		sourceColumn: Calendar Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year Quarter Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 08b577d7-a576-44ef-a677-2b8bdadfe20c
+		summarizeBy: none
+		sourceColumn: Calendar Year Quarter Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year Quarter'
+		dataType: string
+		lineageTag: 1560d38a-0e67-4572-ba0a-1270a1b7cd82
+		summarizeBy: none
+		sourceColumn: Calendar Year Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 090e005c-b5f0-4e4a-a0fd-34613f0cefb8
+		summarizeBy: none
+		sourceColumn: Calendar Year Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calendar Year Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 835c7bda-50c0-4432-948e-57b66241e29b
+		summarizeBy: none
+		sourceColumn: Calendar Year Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: e017f7d6-d58b-43f0-a34f-a09574e42ecd
+		summarizeBy: none
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 25360738-ba25-4f16-9b83-30f3247827b2
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 68371950-ca16-42e0-a1aa-7e96e0b1ac5e
+		summarizeBy: none
+		sourceColumn: Day of Week Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week'
+		dataType: string
+		lineageTag: 0d7b7152-7b00-465b-ad98-a500f3cbc328
+		summarizeBy: none
+		sourceColumn: Day of Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a7a2528-32a5-436c-98d0-27b9e41dbfd0
+		summarizeBy: none
+		sourceColumn: Fiscal Year Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year'
+		dataType: string
+		lineageTag: 80ffa235-f8af-4705-8410-b62a55226f4d
+		summarizeBy: none
+		sourceColumn: Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e9ac07e-8c56-44cf-b35e-17eebb8dc5c6
+		summarizeBy: none
+		sourceColumn: Fiscal Quarter Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter'
+		dataType: string
+		lineageTag: 3dfeeb45-db56-4d6b-8d28-a0810ec04dd5
+		summarizeBy: none
+		sourceColumn: Fiscal Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year Quarter Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: fcc86739-3494-4341-96d7-4d5a1fc87117
+		summarizeBy: none
+		sourceColumn: Fiscal Year Quarter Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year Quarter'
+		dataType: string
+		lineageTag: c2536c39-2e3b-4fde-bb16-3cecff658f1d
+		summarizeBy: none
+		sourceColumn: Fiscal Year Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2564344c-907e-414d-a54b-c7806c465278
+		summarizeBy: none
+		sourceColumn: Fiscal Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month'
+		dataType: string
+		lineageTag: fb189970-b4ca-42b2-a5a2-b82070120d37
+		summarizeBy: none
+		sourceColumn: Fiscal Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Working Day'
+		dataType: string
+		lineageTag: 40c8e0c9-45c2-4bd1-8c09-6e77596afc96
+		summarizeBy: none
+		sourceColumn: Working Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Holiday'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6bfcd536-6807-42ec-bc55-1bcb2f846eb4
+		summarizeBy: none
+		sourceColumn: Is Holiday
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Holiday Name'
+		dataType: string
+		lineageTag: 1deac0c9-505b-48d2-867e-d6dc6fb51d2a
+		summarizeBy: none
+		sourceColumn: Holiday Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Europe Season'
+		dataType: string
+		lineageTag: 2b9a8fef-181f-42a5-a483-30df0198102c
+		summarizeBy: none
+		sourceColumn: Europe Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'North America Season'
+		dataType: string
+		lineageTag: 47a80f96-f777-4b19-969f-b3efd815f4a0
+		summarizeBy: none
+		sourceColumn: North America Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asia Season'
+		dataType: string
+		lineageTag: d0249e6c-0688-497e-b0b8-124558783d6d
+		summarizeBy: none
+		sourceColumn: Asia Season
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date-8ba8f622-40b2-40a3-9944-a8f482d928f2 = m
+		mode: import
+		source =
+				let
+				    Source = #"Contoso Folder",
+				    #"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Date csv" = Source{[#"Folder Path"="E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\",Name="Date.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Date csv",[Delimiter="|", Columns=26, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type datetime}, {"DateKey", Int64.Type}, {"Calendar Year Number", Int64.Type}, {"Calendar Year", type text}, {"Calendar Year Quarter Number", Int64.Type}, {"Calendar Year Quarter", type text}, {"Calendar Year Month Number", Int64.Type}, {"Calendar Year Month", type date}, {"Month Number", Int64.Type}, {"Month", type text}, {"Day of Week Number", Int64.Type}, {"Day of Week", type text}, {"Fiscal Year Number", Int64.Type}, {"Fiscal Year", type text}, {"Fiscal Quarter Number", Int64.Type}, {"Fiscal Quarter", type text}, {"Fiscal Year Quarter Number", Int64.Type}, {"Fiscal Year Quarter", type text}, {"Fiscal Month Number", Int64.Type}, {"Fiscal Month", type text}, {"Working Day", type text}, {"Is Holiday", Int64.Type}, {"Holiday Name", type text}, {"Europe Season", type text}, {"North America Season", type text}, {"Asia Season", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

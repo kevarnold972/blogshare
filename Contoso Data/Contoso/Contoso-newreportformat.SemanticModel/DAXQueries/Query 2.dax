@@ -1,0 +1,10 @@
+DEFINE
+    // MEASURE 'Sales'[Total Net Price] = SUM('Sales'[Net Price])
+	MEASURE 'Sales'[Total Net Price] = 
+	// MEASURE 'Sales'[Total Net Price] = SUM('Sales'[Net Price])
+		SUM('Sales'[Net Price])+1
+
+EVALUATE
+	ROW(
+	"Total_Net_Price", 'Sales'[Total Net Price]
+)

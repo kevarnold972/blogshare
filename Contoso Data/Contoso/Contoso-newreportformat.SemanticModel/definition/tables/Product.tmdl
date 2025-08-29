@@ -1,0 +1,137 @@
+table Product
+	lineageTag: e47af2cb-dcb1-4085-bf9e-cf9a927c8f62
+
+	/// This measure is the number of rows in table 'Product'
+	measure '# Rows in Product' = COUNTROWS('Product')
+		formatString: 0
+		lineageTag: 13cca865-93e6-4090-8c5b-41214c023c45
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: ebd7889e-367e-4c49-927d-c4a864ff077c
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 662e55e6-079a-4fab-8250-6b2dc8ca2fae
+		summarizeBy: none
+		sourceColumn: Product Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 6e2573c0-5b2a-49dd-a114-a31da479d66a
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Manufacturer
+		dataType: string
+		lineageTag: 5880b858-a6f3-4dea-ba07-eb4c24be299d
+		summarizeBy: none
+		sourceColumn: Manufacturer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 4cd72ab2-9295-46c2-8b80-b3b47d7f53cf
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: edb04637-a63a-488a-a800-52fd1da7def1
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weight
+		dataType: string
+		lineageTag: 223db4a2-b8e6-4b57-b59e-94ea3982b71e
+		summarizeBy: none
+		sourceColumn: Weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weight Unit Measure'
+		dataType: string
+		lineageTag: 69ab4e3d-957d-4174-b81e-0d5f3bb793cc
+		summarizeBy: none
+		sourceColumn: Weight Unit Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Cost'
+		dataType: double
+		lineageTag: c2c7d24d-b510-4fc2-b004-ff84230d6e3b
+		summarizeBy: none
+		sourceColumn: Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit Price'
+		dataType: double
+		lineageTag: bfd52dc8-69d2-4b29-b38f-3d5dc3e22144
+		summarizeBy: none
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Available Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9422350a-fbfe-493d-ae41-f7eeec7a6870
+		summarizeBy: none
+		sourceColumn: Available Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		lineageTag: 8247e84c-3e8f-46a4-8104-95e342c025b7
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 8e082acf-7adc-4a8b-b18a-647f1cc4ff0e
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product-6e9ac81b-725f-4c72-8d37-5e7004c72c3b = m
+		mode: import
+		source =
+				let
+				    Source = #"Contoso Folder",
+				    #"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Product csv" = Source{[#"Folder Path"="E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\",Name="Product.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Product csv",[Delimiter="|", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"Product Code", Int64.Type}, {"Product Name", type text}, {"Manufacturer", type text}, {"Brand", type text}, {"Color", type text}, {"Weight", type text}, {"Weight Unit Measure", type text}, {"Unit Cost", type number}, {"Unit Price", type number}, {"Available Date", type datetime}, {"Subcategory", type text}, {"Category", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

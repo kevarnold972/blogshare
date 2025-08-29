@@ -1,0 +1,15 @@
+DEFINE
+	VAR _FIlterColor = TREATAS(
+		{
+			"Silver"
+		},
+		'Product'[Color]
+	)
+
+EVALUATE
+	SUMMARIZECOLUMNS(
+		'Product'[Color],
+		_FIlterColor,
+		"@Total Sales",
+		[Total Net Price]
+	)

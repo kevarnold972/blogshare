@@ -1,0 +1,11 @@
+expression 'Contoso Folder' =
+		let
+		    Source = Folder.Files("E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso")
+		in
+		    Source
+	lineageTag: d310bf79-e67a-4b82-b4de-38ab2c958c68
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,225 @@
+table Customer
+	lineageTag: 818a27e2-93c9-460d-b700-a3ece8b4b2d4
+
+	/// This measure is the number of rows in table 'Customer'
+	measure '# Rows in Customer' = COUNTROWS('Customer')
+		formatString: 0
+		lineageTag: c5d8274b-fe4f-42ea-add8-ab8af53a5d22
+
+	column CustomerKey
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: aa69aae5-9c9e-43f5-a285-ffc638214747
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Code'
+		dataType: string
+		lineageTag: 88c728d1-ab55-4682-a843-fe6fcf07d0ad
+		summarizeBy: none
+		sourceColumn: Customer Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: e42306e5-9ea0-4866-ba07-cab8dc288dc5
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 6c77cc90-4524-46fc-ac7f-2077b00c9ebb
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Birth Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: da1b7485-b043-41b4-ae42-8c6f9c96c5d3
+		summarizeBy: none
+		sourceColumn: Birth Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Marital Status'
+		dataType: string
+		lineageTag: 81d5c57e-a15f-4619-8257-43940b8dae00
+		summarizeBy: none
+		sourceColumn: Marital Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 061fc839-3ab2-4008-881c-ca0e4271a08f
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Yearly Income'
+		dataType: int64
+		formatString: 0
+		lineageTag: 60308706-a21c-4b9c-800b-5dae21b23bd5
+		summarizeBy: none
+		sourceColumn: Yearly Income
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Children'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fde9497-0401-4ed0-bdbc-270b767f542c
+		summarizeBy: none
+		sourceColumn: Total Children
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Children At Home'
+		dataType: int64
+		formatString: 0
+		lineageTag: eead16a6-ed99-45f8-99ed-f472271ce54c
+		summarizeBy: none
+		sourceColumn: Children At Home
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education
+		dataType: string
+		lineageTag: b00f6ea3-eefa-4ff5-92d6-32622b4f738f
+		summarizeBy: none
+		sourceColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column Occupation
+		dataType: string
+		lineageTag: 6fa0a67c-57f0-4a19-9d98-2161dd8859ea
+		summarizeBy: none
+		sourceColumn: Occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'House Ownership'
+		dataType: string
+		lineageTag: 46096088-c05d-4f3d-9c64-8bdfe9c3ea59
+		summarizeBy: none
+		sourceColumn: House Ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cars Owned'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4157bf76-4d0f-4fae-a935-979d5df51cae
+		summarizeBy: none
+		sourceColumn: Cars Owned
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 90216843-ef9a-4280-b958-ace45d7e2874
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 734e5e83-8489-465e-8636-f9f8fb34959f
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 5067ffb2-907c-4da8-a1ba-f5346a2ed822
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 1'
+		dataType: string
+		lineageTag: dc399bb8-aafd-42e9-8e8b-0310a623c75f
+		summarizeBy: none
+		sourceColumn: Address Line 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Address Line 2'
+		dataType: string
+		lineageTag: 95a6f71b-45db-47ef-b043-855da72f98a5
+		summarizeBy: none
+		sourceColumn: Address Line 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: 7c4fb2ec-eacd-4b98-be26-04d1951f15c8
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date First Purchase'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7937917b-2e49-412a-8584-2cfe7aaa48b1
+		summarizeBy: none
+		sourceColumn: Date First Purchase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Type'
+		dataType: string
+		lineageTag: f733dbdc-12d9-4105-9e7b-af02ba5516a6
+		summarizeBy: none
+		sourceColumn: Customer Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Company Name'
+		dataType: string
+		lineageTag: fbae6978-6b44-43c5-99e9-eef6089d457c
+		summarizeBy: none
+		sourceColumn: Company Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegion
+		dataType: string
+		lineageTag: 21d521e9-1a52-4f6e-9381-37b11b5d6cd1
+		summarizeBy: none
+		sourceColumn: CountryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer-8afa61c0-b34f-4ba7-8435-94332d662a9d = m
+		mode: import
+		source =
+				let
+				    Source = #"Contoso Folder",
+				    #"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Customer csv" = Source{[#"Folder Path"="E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\",Name="Customer.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Customer csv",[Delimiter="|", Columns=24, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerKey", Int64.Type}, {"Customer Code", type text}, {"Title", type text}, {"Name", type text}, {"Birth Date", type datetime}, {"Marital Status", type text}, {"Gender", type text}, {"Yearly Income", Int64.Type}, {"Total Children", Int64.Type}, {"Children At Home", Int64.Type}, {"Education", type text}, {"Occupation", type text}, {"House Ownership", type text}, {"Cars Owned", Int64.Type}, {"Continent", type text}, {"City", type text}, {"State", type text}, {"Address Line 1", type text}, {"Address Line 2", type text}, {"Phone", type text}, {"Date First Purchase", type datetime}, {"Customer Type", type text}, {"Company Name", type text}, {"CountryRegion", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

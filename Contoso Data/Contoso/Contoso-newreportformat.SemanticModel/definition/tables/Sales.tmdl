@@ -1,0 +1,202 @@
+table Sales
+	lineageTag: cd396593-e169-4c19-99b8-b8450d8713c6
+
+	/// This measure is the sum of column 'Sales'[Net Price]
+	measure 'Total Net Price' = SUM('Sales'[Net Price])+1
+		formatString: 0.00
+		lineageTag: 58ecb857-59c2-4568-ba4c-062bf1f388bc
+
+	/// This measure is the sum of column 'Sales'[Quantity]
+	measure 'Total Quantity' = SUM('Sales'[Quantity])
+		formatString: 0.00
+		lineageTag: 574bc115-4204-42b9-a17f-b9bbe655515c
+
+	/// This measure is the sum of column 'Sales'[Unit Cost]
+	measure 'Total Unit Cost' = SUM('Sales'[Unit Cost])
+		formatString: 0.00
+		lineageTag: 8af13e87-33d0-4441-a17a-1d744f470443
+
+	/// This measure is the sum of column 'Sales'[Unit Discount]
+	measure 'Total Unit Discount' = SUM('Sales'[Unit Discount])
+		formatString: 0.00
+		lineageTag: ac09d0d2-ac75-413b-9b48-b15b19da247a
+
+	/// This measure is the sum of column 'Sales'[Unit Price]
+	measure 'Total Unit Price' = SUM('Sales'[Unit Price])
+		formatString: 0.00
+		lineageTag: 99cdcf4c-e75b-4047-8d66-31c17df95497
+
+	/// This measure is the number of rows in table 'Sales'
+	measure '# Rows in Sales' = COUNTROWS('Sales')
+		formatString: 0
+		lineageTag: 5eb15704-d122-499c-9272-5c7c36fd0b9d
+
+	column StoreKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 250743bd-0a41-4cbb-92e8-f269eaf09b2d
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7688f5d8-be21-4865-97cf-04a605984e00
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3e8b8c08-7747-4b87-843f-d3fa5cf5a72c
+		summarizeBy: none
+		sourceColumn: PromotionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d53c5597-1564-4154-acd7-8c17f0096a8c
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 17275370-9a6c-4a71-95bc-afe74c88fcb4
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b6c0d713-1720-4b85-8fcf-6bb42db5b0bc
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 9a29b53c-0247-4ea7-98b3-61eb38a1f078
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Date'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 3be59ae3-c014-447d-945e-3144906aaf1c
+		summarizeBy: none
+		sourceColumn: Delivery Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bbd5f3fe-e8a1-4d88-bd6e-64a2ab25b475
+		summarizeBy: none
+		sourceColumn: Order Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Line Number'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 002c77fa-4320-4be9-84f9-0be311230700
+		summarizeBy: none
+		sourceColumn: Order Line Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 78a742c0-b0d5-4ba7-b97d-42a389bbb7ba
+		summarizeBy: none
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Price'
+		dataType: double
+		isHidden
+		lineageTag: a63204bf-5ed1-4206-9357-76fea528cdc2
+		summarizeBy: none
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Unit Discount'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 25d8df78-ebc7-4ae6-ad75-d386901666fb
+		summarizeBy: none
+		sourceColumn: Unit Discount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Cost'
+		dataType: double
+		isHidden
+		lineageTag: 4c0ee394-e171-4667-a794-facb4e1f883a
+		summarizeBy: none
+		sourceColumn: Unit Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Price'
+		dataType: double
+		isHidden
+		lineageTag: e65540bc-390a-446d-9377-6137595d142d
+		summarizeBy: none
+		sourceColumn: Net Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Sales-975ff18c-84e5-4387-a2b1-887d5f3d49a5 = m
+		mode: import
+		source =
+				let
+				    Source = #"Contoso Folder",
+				    #"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Sales csv" = Source{[#"Folder Path"="E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\",Name="Sales.csv"]}[Content],
+				    #"Imported CSV" = Csv.Document(#"E:\OneDrive\Documents\_Me\PBI Learning\Data Extracts\Contoso\_Sales csv",[Delimiter="|", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"StoreKey", Int64.Type}, {"ProductKey", Int64.Type}, {"PromotionKey", Int64.Type}, {"CurrencyKey", Int64.Type}, {"CustomerKey", Int64.Type}, {"OrderDateKey", Int64.Type}, {"Order Date", type datetime}, {"Delivery Date", type datetime}, {"Order Number", Int64.Type}, {"Order Line Number", Int64.Type}, {"Quantity", Int64.Type}, {"Unit Price", type number}, {"Unit Discount", Int64.Type}, {"Unit Cost", type number}, {"Net Price", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
